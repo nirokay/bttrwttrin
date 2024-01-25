@@ -60,7 +60,7 @@ type
         windGust*: UnitData[int] ## Wind gust in °C and °F
         chanceOf*: ChanceOf ## Chances of weather happening
         humidity*: float ## Humidity
-        precipitation*: UnitData[int] ## Precipitation in °C and °F
+        precipitation*: UnitData[float] ## Precipitation in °C and °F
         pressure*: UnitData[int] ## Pressure in millibars and "inches of mercury"
         temperature*: UnitData[int] ## Temperature in °C and °F
         time*: string ## Time in HHMM (24h format)
@@ -80,7 +80,7 @@ type
         maxTemperature*: UnitData[int] ## Maximal temperature in °C and °F
         minTemperature*: UnitData[int] ## Minimal temperature in °C and °F
         sunHours*: float ## Hours of sun-shine
-        totalSnow*: int ## Total snow in centimeters
+        totalSnow*: float ## Total snow in centimeters
         uvIndex*: int ## UV index
         hourly*: seq[WeatherHourlyForecast] ## Hourly forecast
 

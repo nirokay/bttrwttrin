@@ -94,6 +94,18 @@ proc jsonToNearestArea*(json: seq[JsonNearestArea]): Option[NearestArea] =
 proc getAstronomy*(json: seq[JsonAstronomy]): Astronomy =
     ## Gets the astronomy from json
     let json: JsonAstronomy = json[0]
+    result = Astronomy(
+        sun: AstronomySun(
+            rising: json.sunrise,
+            setting: json.sunset
+        ),
+        moon: AstronomyMoon(
+            rising: json.moonrise,
+            setting: json.moonset,
+            illumination: json.moon_illumination.parseInt(),
+            phase: json.moon_phase
+        )
+    )
 
 proc getHourly*(json: JsonHourlyForecast): WeatherHourlyForecast =
     ## Gets the hourly forecast from json
@@ -110,13 +122,13 @@ proc getHourly*(json: JsonHourlyForecast): WeatherHourlyForecast =
             overcast: json.chanceofovercast.parsePercentageI(),
             rain: json.chanceofrain.parsePercentageI(),
             remdry: json.chanceofremdry.parsePercentageI(),
-            snow: json.chanceoffog.parsePercentageI(),
+            snow: json.chanceoffog.parsePercentageF(),
             sunshine: json.chanceofsunshine.parsePercentageI(),
             thunder: json.chanceofthunder.parsePercentageI(),
             windy: json.chanceofwindy.parsePercentageI()
         ),
         humidity: json.humidity.get().parseFloat(),
-        precipitation: metImpI(json.precipMM, json.precipInches),
+        precipitation: metImpF(json.precipMM, json.precipInches),
         pressure: metImpI(json.pressure, json.pressureInches),
         time: json.time.get(),
         uvIndex: json.uvIndex.get().parseInt(),
@@ -141,7 +153,7 @@ proc getForecast*(json: JsonWeatherForecast): WeatherForecast =
         maxTemperature: metImpI(json.maxtempC, json.maxtempF),
         minTemperature: metImpI(json.mintempC, json.mintempF),
         sunHours: json.sunHour.get().parseFloat(),
-        totalSnow: json.totalSnow_cm.get().parseInt(),
+        totalSnow: json.totalSnow_cm.get().parseFloat(),
         uvIndex: json.uvIndex.get().parseInt(),
         hourly: json.hourly.getHourly()
     )
