@@ -7,6 +7,7 @@ const
 
 type
     Unit* = enum
+        ## Used for passing arguments to procs like `getTemperatureFluctuation()`
         Metric, Imperial
 
 var client: HttpClient = newHttpClient()
