@@ -1,4 +1,4 @@
-import std/[unittest, json]
+import std/[unittest, json, options]
 import bttrwttrin
 import bttrwttrin/[typedefs, conversions]
 
@@ -20,3 +20,12 @@ test "Getting values":
     check dummyData.current.temperature.imperial == 19
 
     check dummyData.current.description == "Freezing fog"
+
+
+test "Getter procs":
+    check dummyData.getToday().get().getTemperatureFluctuation() == 9
+    check dummyData.getToday().get().getTemperatureFluctuation(Imperial) == 16
+
+
+
+

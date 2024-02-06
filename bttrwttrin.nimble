@@ -1,6 +1,6 @@
 # Package
 
-version       = "0.1.0"
+version       = "1.0.0"
 author        = "nirokay"
 description   = "wttr.in API, but better."
 license       = "GPL-3.0-or-later"
