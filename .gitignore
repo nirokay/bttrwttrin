@@ -1,0 +1,8 @@
+# Project:
+.vscode/
+
+# Documentation:
+docs/
+
+# Test binaries:
+tests/test_dummy
